@@ -252,7 +252,11 @@ function App() {
 
           <div className="media-showcase">
             <article className="media-feature">
-              <div className="media-image media-image-main">
+              <div className="media-image media-image-main"
+                style={{
+                  backgroundImage: 'url("/images/media-feature.png")',
+                }}
+              >
                 <div className="media-image-overlay" />
 
                 <span className="media-number">01</span>
@@ -273,7 +277,12 @@ function App() {
 
             <div className="media-list">
               <article className="media-item">
-                <div className="media-image media-image-small">
+                <div
+                  className="media-image media-image-small"
+                  style={{
+                    backgroundImage: 'url("/images/media-behind.png")',
+                  }}
+                >
                   <span className="media-number">02</span>
 
                   <button
@@ -294,7 +303,12 @@ function App() {
               </article>
 
               <article className="media-item">
-                <div className="media-image media-image-small media-image-alt">
+                <div
+                  className="media-image media-image-small"
+                  style={{
+                    backgroundImage: 'url("/images/media-live.png")',
+                  }}
+                >
                   <span className="media-number">03</span>
 
                   <button
