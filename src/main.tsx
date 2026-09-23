@@ -37,13 +37,81 @@ function App() {
 
       <main>
         <section id="home" className="hero section-pad">
-          <div className="hero-copy">
-            <p className="eyebrow">Entertainer · Creator · Entrepreneur</p>
-            <h1>More than<br />entertainment.<br /><em>It's a movement.</em></h1>
-            <p className="hero-text">The official digital home of Darmian Kingston. Built on passion, driven by purpose, and dedicated to inspiring impact.</p>
-            <div className="hero-actions"><a className="button" href="#contact">Book Darmian <ArrowUpRight size={16} /></a><a className="text-link" href="#projects">Explore projects <ArrowUpRight size={16} /></a></div>
+          <div className="hero-background-text" aria-hidden="true">
+            DK
           </div>
-          <div className="hero-portrait" aria-label="Portrait placeholder for Darmian Kingston"><div className="portrait-glow" /><div className="portrait-card"><span>DK</span><p>Portrait<br />coming soon</p></div></div>
+
+          <div className="hero-copy">
+            <div className="hero-intro">
+              <span className="hero-line" />
+              <p className="eyebrow">
+                Entertainer · Creator · Entrepreneur
+              </p>
+            </div>
+
+            <h1>
+              More than
+              <br />
+              entertainment.
+              <br />
+              <em>It's a movement.</em>
+            </h1>
+
+            <p className="hero-text">
+              The official digital home of Darmian Kingston.
+              A storyteller, entertainer and creative force
+              building experiences that connect, inspire and
+              leave a lasting impression.
+            </p>
+
+            <div className="hero-actions">
+              <a className="button" href="#contact">
+                Book Darmian
+                <ArrowUpRight size={16} />
+              </a>
+
+              <a className="text-link" href="#projects">
+                Explore projects
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
+
+            <div className="hero-signature">
+              <span>DK</span>
+              <p>Creating impact<br />beyond the spotlight.</p>
+            </div>
+          </div>
+
+          <div
+            className="hero-portrait"
+            aria-label="Portrait of Darmian Kingston"
+          >
+            <div className="portrait-grid" />
+
+            <div className="portrait-glow" />
+
+            <div className="portrait-card">
+              <span>DK</span>
+              <p>
+                Darmian<br />
+                Kingston
+              </p>
+            </div>
+
+            <div className="portrait-label">
+              <span>01</span>
+              <span>Personal brand</span>
+            </div>
+
+            <div className="portrait-side-text">
+              EST. 2026
+            </div>
+          </div>
+
+          <div className="hero-scroll">
+            <span />
+            <p>Scroll to explore</p>
+          </div>
         </section>
 
         <section className="stats section-pad">{stats.map(([number, label]) => <div className="stat" key={label}><strong>{number}</strong><span>{label}</span></div>)}</section>
@@ -55,11 +123,174 @@ function App() {
 
         <section id="shows" className="dark-section section-pad"><div className="section-heading"><div><p className="eyebrow">On stage</p><h2>Shows & appearances</h2></div><a className="text-link" href="#contact">Request booking <ArrowUpRight size={16} /></a></div><div className="feature-grid"><article><span>01 / Live entertainment</span><h3>Comedy, connection<br />and unforgettable nights.</h3><p>Built for audiences, brands, festivals and private experiences.</p></article><article><span>02 / Hosting</span><h3>Confident energy.<br />Sharp delivery.</h3><p>Professional hosting for launches, events and conversations.</p></article></div></section>
 
-        <section id="media" className="section-pad"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Latest media</h2></div><a className="text-link" href="#contact">View all media <ArrowUpRight size={16} /></a></div><div className="media-grid"><div className="media-card large"><div className="media-icon"><Play size={18} /></div><span>Featured video</span><h3>The story behind the laughter.</h3></div><div className="media-card"><div className="media-icon"><Mic2 size={18} /></div><span>Podcast</span><h3>Conversations that matter.</h3></div><div className="media-card"><div className="media-icon"><BriefcaseBusiness size={18} /></div><span>Documentary</span><h3>Beyond the spotlight.</h3></div></div></section>
+        <section id="media" className="section-pad media-section">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">From the archive</p>
+              <h2>Moments that<br /><em>move people.</em></h2>
+            </div>
+
+            <p>
+              Explore selected moments, conversations and creative
+              projects from Darmian Kingston's journey.
+            </p>
+          </div>
+
+          <div className="media-showcase">
+            <article className="media-feature">
+              <div className="media-image media-image-main">
+                <div className="media-image-overlay" />
+
+                <span className="media-number">01</span>
+
+                <button
+                  className="media-play"
+                  aria-label="Play featured video"
+                >
+                  <Play size={22} fill="currentColor" />
+                </button>
+
+                <div className="media-caption">
+                  <span>Featured film</span>
+                  <h3>The Kingston Sessions</h3>
+                </div>
+              </div>
+            </article>
+
+            <div className="media-list">
+              <article className="media-item">
+                <div className="media-image media-image-small">
+                  <span className="media-number">02</span>
+
+                  <button
+                    className="media-play"
+                    aria-label="Play behind the scenes video"
+                  >
+                    <Play size={16} fill="currentColor" />
+                  </button>
+                </div>
+
+                <div className="media-item-copy">
+                  <span>Behind the scenes</span>
+                  <h3>Behind the Laughs</h3>
+                  <a href="#contact" className="text-link">
+                    Explore story <ArrowUpRight size={15} />
+                  </a>
+                </div>
+              </article>
+
+              <article className="media-item">
+                <div className="media-image media-image-small media-image-alt">
+                  <span className="media-number">03</span>
+
+                  <button
+                    className="media-play"
+                    aria-label="Play live performance video"
+                  >
+                    <Play size={16} fill="currentColor" />
+                  </button>
+                </div>
+
+                <div className="media-item-copy">
+                  <span>Live performance</span>
+                  <h3>The Darmian Experience</h3>
+                  <a href="#contact" className="text-link">
+                    View performance <ArrowUpRight size={15} />
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
 
         <section id="projects" className="section-pad projects-section"><div className="section-heading"><div><p className="eyebrow">Beyond the stage</p><h2>Featured projects</h2></div></div><div className="project-list">{projects.map((project, index) => <article className="project-row" key={project.title}><span className="project-number">0{index + 1}</span><div><span className="eyebrow">{project.category}</span><h3>{project.title}</h3><p>{project.description}</p></div><ArrowUpRight /></article>)}</div></section>
 
-        <section id="contact" className="contact-section section-pad"><p className="eyebrow">Let's work together</p><h2>Bring the next idea<br /><em>to life.</em></h2><p>For bookings, collaborations, appearances and business inquiries.</p><div className="contact-actions"><a className="button" href="mailto:hello@example.com">Start a conversation <ArrowUpRight size={16} /></a><a className="text-link" href="#shows"><CalendarDays size={16} /> View appearances</a></div></section>
+        <section id="contact" className="section-pad contact-section">
+          <div className="contact-layout">
+            <div className="contact-intro">
+              <p className="eyebrow">Let's work together</p>
+
+              <h2>
+                Bring the<br />
+                <em>vision to life.</em>
+              </h2>
+
+              <p className="contact-description">
+                From live performances and brand partnerships to media
+                collaborations, let's create something meaningful.
+              </p>
+
+              <div className="contact-details">
+                <div>
+                  <span>Email</span>
+                  <a href="mailto:hello@darmiankingston.com">
+                    hello@darmiankingston.com
+                  </a>
+                </div>
+
+                <div>
+                  <span>Availability</span>
+                  <p>Bookings · Partnerships · Collaborations</p>
+                </div>
+              </div>
+            </div>
+
+            <form className="booking-form">
+              <div className="form-heading">
+                <span>01 / Enquiry</span>
+                <h3>Start a conversation.</h3>
+              </div>
+
+              <label>
+                Your name
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full name"
+                  required
+                />
+              </label>
+
+              <label>
+                Email address
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </label>
+
+              <label>
+                Enquiry type
+                <select name="enquiryType" defaultValue="" required>
+                  <option value="" disabled>
+                    Select an option
+                  </option>
+                  <option value="booking">Event booking</option>
+                  <option value="brand">Brand partnership</option>
+                  <option value="media">Media appearance</option>
+                  <option value="collaboration">Creative collaboration</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+
+              <label>
+                Tell us more
+                <textarea
+                  name="message"
+                  placeholder="Share the details of your enquiry..."
+                  rows={5}
+                  required
+                />
+              </label>
+
+              <button type="submit" className="button">
+                Send enquiry <ArrowUpRight size={16} />
+              </button>
+            </form>
+          </div>
+        </section>
       </main>
 
       <footer className="footer section-pad"><div className="brand"><span className="brand-mark">D</span><span><strong>DARMIAN</strong><strong>KINGSTON</strong></span></div><div className="socials"><a href="#" aria-label="Instagram"><FaInstagram /></a><a href="#" aria-label="YouTube"><FaYoutube /></a><a href="#" aria-label="Facebook"><FaFacebookF /></a><a href="#" aria-label="TikTok"><FaTiktok /></a></div><p>© {new Date().getFullYear()} Darmian Kingston. All rights reserved.</p></footer>
