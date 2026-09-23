@@ -91,11 +91,10 @@ function App() {
             <div className="portrait-glow" />
 
             <div className="portrait-card">
-              <span>DK</span>
-              <p>
-                Darmian<br />
-                Kingston
-              </p>
+              <img
+                src="/images/dk.png"
+                alt="Darmian Kingston portrait"
+              />
             </div>
 
             <div className="portrait-label">

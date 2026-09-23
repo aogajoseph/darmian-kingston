@@ -415,39 +415,37 @@ h1 em {
 
 .portrait-glow {
   position: absolute;
-
-  width: 500px;
-  height: 500px;
-
-  background: #b98a4e22;
-
-  filter: blur(80px);
+  inset: 5%;
+  z-index: -1;
   border-radius: 50%;
-
-  animation: glowPulse 6s ease-in-out infinite;
+  background: rgba(185, 138, 78, 0.2);
+  filter: blur(100px);
+  animation: glowPulse 8s ease-in-out infinite;
 }
 
 /* Portrait card */
 
 .portrait-card {
   position: relative;
+  width: 100%;
+  height: 650px;
+  overflow: hidden;
+  border: 1px solid rgba(210, 165, 102, 0.28);
+  background: #080807;
+}
 
-  width: 72%;
-  height: 86%;
+.portrait-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% center;
+  filter: contrast(1.05) saturate(0.92);
+  transition: transform 0.8s ease;
+}
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  border: 1px solid #b98a4e66;
-
-  background: linear-gradient(
-    #ffffff05,
-    #00000055
-  );
-
-  transition: transform 0.5s ease;
+.hero-portrait:hover .portrait-card img {
+  transform: scale(1.025);
 }
 
 .portrait-card span {
