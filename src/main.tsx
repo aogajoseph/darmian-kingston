@@ -115,9 +115,59 @@ function App() {
 
         <section className="stats section-pad">{stats.map(([number, label]) => <div className="stat" key={label}><strong>{number}</strong><span>{label}</span></div>)}</section>
 
-        <section id="about" className="split-section section-pad">
-          <div><p className="eyebrow">The person. The purpose.</p><h2>A personal brand with something to say.</h2></div>
-          <div><p className="body-copy">Darmian Kingston is an entertainer, creator and entrepreneur building experiences that connect people, challenge perspectives and leave a lasting impression.</p><p className="body-copy">From the stage to the screen, every project is an opportunity to turn attention into meaningful impact.</p><a className="text-link" href="#contact">Discover the story <ArrowUpRight size={16} /></a></div>
+        <section id="about" className="split-section section-pad about-section">
+          <div className="about-heading">
+            <p className="eyebrow">01 / About</p>
+
+            <h2>
+              A personal brand
+              <br />
+              with something
+              <br />
+              to say.
+            </h2>
+
+            <span className="about-accent-line" />
+          </div>
+
+          <div className="about-content">
+            <div className="about-copy">
+              <p className="body-copy">
+                Darmian Kingston is an entertainer, creator and entrepreneur
+                building experiences that connect people, challenge perspectives
+                and leave a lasting impression.
+              </p>
+
+              <p className="body-copy">
+                From the stage to the screen, every project is an opportunity
+                to turn attention into meaningful impact.
+              </p>
+
+              <a className="text-link" href="#contact">
+                Discover the story <ArrowUpRight size={16} />
+              </a>
+            </div>
+
+            <div className="about-visuals">
+              <div className="about-image about-image-main">
+                <img
+                  src="/images/about.png"
+                  alt="Darmian Kingston performing on stage"
+                />
+                <span className="about-image-label">Live performance</span>
+                <span className="about-image-number">01</span>
+              </div>
+
+              <div className="about-image about-image-secondary">
+                <img
+                  src="/images/about2.png"
+                  alt="Darmian Kingston during a podcast conversation"
+                />
+                <span className="about-image-label">The conversation</span>
+                <span className="about-image-number">02</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section id="shows" className="dark-section section-pad"><div className="section-heading"><div><p className="eyebrow">On stage</p><h2>Shows & appearances</h2></div><a className="text-link" href="#contact">Request booking <ArrowUpRight size={16} /></a></div><div className="feature-grid"><article><span>01 / Live entertainment</span><h3>Comedy, connection<br />and unforgettable nights.</h3><p>Built for audiences, brands, festivals and private experiences.</p></article><article><span>02 / Hosting</span><h3>Confident energy.<br />Sharp delivery.</h3><p>Professional hosting for launches, events and conversations.</p></article></div></section>
