@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ArrowUpRight, Menu, X, Play, CalendarDays, Mic2, BriefcaseBusiness } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Play } from 'lucide-react';
 import { FaInstagram, FaYoutube, FaFacebookF, FaTiktok } from 'react-icons/fa';
 import './styles.css';
 
@@ -28,19 +28,22 @@ function App() {
           <span className="brand-mark">D</span>
           <span><strong>DARMIAN</strong><strong>KINGSTON</strong></span>
         </a>
+
         <button 
           className="menu-button" 
           aria-label="Toggle navigation" 
           onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}
         </button>
+
         <nav className={open ? 'nav open' : 'nav'}>
           {['About', 'Shows', 'Media', 'Projects', 'Contact'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={close}>{item}</a>)}
+          
           <a 
             className="button button-small" 
             href="#contact" onClick={close}>
-              Book Darmian 
-              <ArrowUpRight size={15} />
-            </a>
+            Book Darmian 
+            <ArrowUpRight size={15} />
+          </a>
         </nav>
       </header>
 
@@ -254,8 +257,7 @@ function App() {
             </div>
 
             <p>
-              Explore selected moments, conversations and creative
-              projects from Darmian Kingston's journey.
+              Explore selected moments, conversations and creative projects from Darmian Kingston's journey.
             </p>
           </div>
 
@@ -340,7 +342,50 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="section-pad projects-section"><div className="section-heading"><div><p className="eyebrow">Beyond the stage</p><h2>Featured projects</h2></div></div><div className="project-list">{projects.map((project, index) => <article className="project-row" key={project.title}><span className="project-number">0{index + 1}</span><div><span className="eyebrow">{project.category}</span><h3>{project.title}</h3><p>{project.description}</p></div><ArrowUpRight /></article>)}</div></section>
+        <section id="projects" className="section-pad projects-section">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Beyond the stage</p>
+              <h2>Featured projects</h2>
+            </div>
+
+            <p>
+              Creative work, original formats and experiences built to connect
+              with audiences beyond the spotlight.
+            </p>
+          </div>
+
+          <div className="project-list">
+            {projects.map((project, index) => (
+              <article
+                className="project-row"
+                key={project.title}
+              >
+                <span className="project-number">
+                  0{index + 1}
+                </span>
+
+                <div className="project-content">
+                  <span className="eyebrow">
+                    {project.category}
+                  </span>
+
+                  <h3>{project.title}</h3>
+
+                  <p>{project.description}</p>
+                </div>
+
+                <a
+                  href="#contact"
+                  className="project-link"
+                  aria-label={`Explore ${project.title}`}
+                >
+                  <ArrowUpRight size={22} />
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section id="contact" className="section-pad contact-section">
           <div className="contact-layout">
