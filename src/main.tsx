@@ -170,7 +170,72 @@ function App() {
           </div>
         </section>
 
-        <section id="shows" className="dark-section section-pad"><div className="section-heading"><div><p className="eyebrow">On stage</p><h2>Shows & appearances</h2></div><a className="text-link" href="#contact">Request booking <ArrowUpRight size={16} /></a></div><div className="feature-grid"><article><span>01 / Live entertainment</span><h3>Comedy, connection<br />and unforgettable nights.</h3><p>Built for audiences, brands, festivals and private experiences.</p></article><article><span>02 / Hosting</span><h3>Confident energy.<br />Sharp delivery.</h3><p>Professional hosting for launches, events and conversations.</p></article></div></section>
+        <section id="shows" className="dark-section section-pad">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">On stage</p>
+              <h2>Shows & appearances</h2>
+            </div>
+
+            <a className="text-link" href="#contact">
+              Request booking <ArrowUpRight size={16} />
+            </a>
+          </div>
+
+          <div className="feature-grid">
+            <article className="show-card show-card-main">
+              <div className="show-card-background" />
+
+              <div className="show-card-overlay" />
+
+              <div className="show-card-number">01</div>
+
+              <div className="show-card-content">
+                <span>Live entertainment</span>
+
+                <h3>
+                  Comedy, connection
+                  <br />
+                  and unforgettable nights.
+                </h3>
+
+                <p>
+                  Built for audiences, brands, festivals and private experiences.
+                </p>
+
+                <a className="text-link" href="#contact">
+                  Explore live entertainment <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </article>
+
+            <article className="show-card show-card-secondary">
+              <div className="show-card-background" />
+
+              <div className="show-card-overlay" />
+
+              <div className="show-card-number">02</div>
+
+              <div className="show-card-content">
+                <span>Hosting</span>
+
+                <h3>
+                  Confident energy.
+                  <br />
+                  Sharp delivery.
+                </h3>
+
+                <p>
+                  Professional hosting for launches, events and conversations.
+                </p>
+
+                <a className="text-link" href="#contact">
+                  Explore hosting <ArrowUpRight size={16} />
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <section id="media" className="section-pad media-section">
           <div className="section-heading">

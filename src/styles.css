@@ -813,59 +813,210 @@ h1 em {
 }
 
 
-/* ========================================
-   10. SHOWS SECTION
-======================================== */
-
-.dark-section {
-  background: var(--surface);
-}
-
-.section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-
-  gap: 25px;
-  margin-bottom: 45px;
-}
+/* =========================================
+   SHOWS — CINEMATIC FEATURE CARDS
+========================================= */
 
 .feature-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 18px;
+  margin-top: 55px;
 }
 
-.feature-grid article {
-  min-height: 340px;
-
-  padding: 35px;
-
-  background: var(--surface-light);
-  border: 1px solid var(--line);
+.show-card {
+  position: relative;
+  min-height: 570px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid rgba(210, 165, 102, 0.2);
+  background: #181512;
 }
 
-.feature-grid span,
-.media-card span {
+.show-card-main {
+  min-height: 620px;
+}
+
+.show-card-secondary {
+  min-height: 520px;
+  align-self: end;
+}
+
+.show-card-background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(
+      circle at 65% 25%,
+      rgba(210, 165, 102, 0.3),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #42362b,
+      #1b1714 55%,
+      #090909
+    );
+  transform: scale(1);
+  transition: transform 0.8s ease;
+}
+
+/* Temporary visual variation until assets are added */
+
+.show-card-secondary .show-card-background {
+  background:
+    radial-gradient(
+      circle at 35% 20%,
+      rgba(185, 138, 78, 0.22),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #332d27,
+      #151311 60%,
+      #080808
+    );
+}
+
+.show-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.62) 45%,
+      rgba(0, 0, 0, 0.08) 100%
+    );
+  transition: background 0.5s ease;
+}
+
+.show-card-number {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  color: var(--gold-light);
+  font-family: "Oswald", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.show-card-content {
+  width: 100%;
+  padding: 38px;
+}
+
+.show-card-content > span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--gold-light);
   font-size: 10px;
-
-  color: var(--gold);
-
+  font-weight: 700;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-.feature-grid h3 {
-  font-size: 42px;
-  margin-top: 90px;
+.show-card-content h3 {
+  max-width: 550px;
+  margin-bottom: 22px;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 
-.feature-grid p,
-.media-card p {
-  color: var(--muted);
-
+.show-card-content p {
+  max-width: 360px;
+  margin-bottom: 26px;
+  color: #b6b0a7;
   font-size: 13px;
   line-height: 1.7;
+}
+
+.show-card-content .text-link {
+  font-size: 11px;
+}
+
+/* HOVER EFFECTS */
+
+.show-card:hover .show-card-background {
+  transform: scale(1.06);
+}
+
+.show-card:hover .show-card-overlay {
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.48) 55%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+}
+
+/* ASSETS */
+
+.show-card-main .show-card-background {
+  background-image: url("/images/show.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.show-card-secondary .show-card-background {
+  background-image: url("/images/hosting.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* =========================================
+   SHOWS RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 40px;
+  }
+
+  .show-card,
+  .show-card-main,
+  .show-card-secondary {
+    min-height: 480px;
+  }
+
+  .show-card-content {
+    padding: 28px;
+  }
+
+  .show-card-content h3 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 520px) {
+  .show-card,
+  .show-card-main,
+  .show-card-secondary {
+    min-height: 440px;
+  }
+
+  .show-card-content {
+    padding: 24px;
+  }
+
+  .show-card-content h3 {
+    font-size: 35px;
+  }
+
+  .show-card-number {
+    top: 22px;
+    right: 22px;
+  }
 }
 
 
