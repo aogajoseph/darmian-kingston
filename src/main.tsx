@@ -1,18 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-import {
-  ArrowUpRight,
-  Menu,
-  X
-} from 'lucide-react';
-
-import {
-  FaInstagram,
-  FaYoutube,
-  FaFacebookF
-} from 'react-icons/fa';
-
+import { ArrowUpRight, Menu, X, Play, CalendarDays, Mic2, BriefcaseBusiness } from 'lucide-react';
+import { FaInstagram, FaYoutube, FaFacebookF, FaTiktok } from 'react-icons/fa';
 import './styles.css';
 
 const projects = [
@@ -39,9 +28,7 @@ function App() {
           <span className="brand-mark">D</span>
           <span><strong>DARMIAN</strong><strong>KINGSTON</strong></span>
         </a>
-        <button className="menu-button" aria-label="Toggle navigation" onClick={() => setOpen(!open)}>
-          {open ? <X /> : <Menu />}
-        </button>
+        <button className="menu-button" aria-label="Toggle navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
         <nav className={open ? 'nav open' : 'nav'}>
           {['About', 'Shows', 'Media', 'Projects', 'Contact'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={close}>{item}</a>)}
           <a className="button button-small" href="#contact" onClick={close}>Book Darmian <ArrowUpRight size={15} /></a>
@@ -53,136 +40,29 @@ function App() {
           <div className="hero-copy">
             <p className="eyebrow">Entertainer · Creator · Entrepreneur</p>
             <h1>More than<br />entertainment.<br /><em>It's a movement.</em></h1>
-            <p className="hero-text">
-              The official digital home of Darmian Kingston. Built on passion, driven by purpose, and dedicated to inspiring impact.
-            </p>
-            <div className="hero-actions">
-              <a className="button" href="#contact">Book Darmian <ArrowUpRight size={16} /></a>
-              <a className="text-link" href="#projects">Explore projects <ArrowUpRight size={16} /></a>
-            </div>
+            <p className="hero-text">The official digital home of Darmian Kingston. Built on passion, driven by purpose, and dedicated to inspiring impact.</p>
+            <div className="hero-actions"><a className="button" href="#contact">Book Darmian <ArrowUpRight size={16} /></a><a className="text-link" href="#projects">Explore projects <ArrowUpRight size={16} /></a></div>
           </div>
-          <div className="hero-portrait" aria-label="Portrait placeholder for Darmian Kingston">
-          <div className="portrait-glow" />
-            <div className="portrait-card">
-              <span>DK</span>
-              <p>Portrait<br />coming soon</p>
-            </div>
-          </div>
+          <div className="hero-portrait" aria-label="Portrait placeholder for Darmian Kingston"><div className="portrait-glow" /><div className="portrait-card"><span>DK</span><p>Portrait<br />coming soon</p></div></div>
         </section>
 
-        <section className="stats section-pad">{stats.map(([number, label]) => 
-          <div className="stat" key={label}><strong>{number}</strong><span>{label}</span></div>)}
-        </section>
+        <section className="stats section-pad">{stats.map(([number, label]) => <div className="stat" key={label}><strong>{number}</strong><span>{label}</span></div>)}</section>
 
         <section id="about" className="split-section section-pad">
-          <div>
-            <p className="eyebrow">The person. The purpose.</p>
-            <h2>A personal brand with something to say.</h2>
-          </div>
-          <div>
-            <p className="body-copy">
-              Darmian Kingston is an entertainer, creator and entrepreneur building experiences that connect people, challenge perspectives and leave a lasting impression.
-            </p>
-            <p className="body-copy">
-              From the stage to the screen, every project is an opportunity to turn attention into meaningful impact.
-            </p>
-            <a className="text-link" href="#contact">Discover the story <ArrowUpRight size={16} /></a>
-          </div>
+          <div><p className="eyebrow">The person. The purpose.</p><h2>A personal brand with something to say.</h2></div>
+          <div><p className="body-copy">Darmian Kingston is an entertainer, creator and entrepreneur building experiences that connect people, challenge perspectives and leave a lasting impression.</p><p className="body-copy">From the stage to the screen, every project is an opportunity to turn attention into meaningful impact.</p><a className="text-link" href="#contact">Discover the story <ArrowUpRight size={16} /></a></div>
         </section>
 
-        <section id="shows" className="dark-section section-pad">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">On stage</p>
-              <h2>Shows & appearances</h2>
-            </div>
-            <a className="text-link" href="#contact">Request booking <ArrowUpRight size={16} /></a>
-          </div>
-          <div className="feature-grid">
-            <article>
-              <span>01 / Live entertainment</span>
-              <h3>Comedy, connection<br />and unforgettable nights.</h3>
-              <p>Built for audiences, brands, festivals and private experiences.</p>
-            </article>
-            <article>
-              <span>02 / Hosting</span>
-              <h3>Confident energy.<br />Sharp delivery.</h3>
-              <p>Professional hosting for launches, events and conversations.</p>
-            </article>
-          </div>
-        </section>
+        <section id="shows" className="dark-section section-pad"><div className="section-heading"><div><p className="eyebrow">On stage</p><h2>Shows & appearances</h2></div><a className="text-link" href="#contact">Request booking <ArrowUpRight size={16} /></a></div><div className="feature-grid"><article><span>01 / Live entertainment</span><h3>Comedy, connection<br />and unforgettable nights.</h3><p>Built for audiences, brands, festivals and private experiences.</p></article><article><span>02 / Hosting</span><h3>Confident energy.<br />Sharp delivery.</h3><p>Professional hosting for launches, events and conversations.</p></article></div></section>
 
-        <section id="media" className="section-pad">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Selected work</p>
-              <h2>Latest media</h2>
-            </div>
-            <a className="text-link" href="#contact">View all media <ArrowUpRight size={16} /></a>
-          </div>
-          <div className="media-grid">
-            <div className="media-card large">
-              <span>Featured video</span>
-              <h3>The story behind the laughter.</h3>
-            </div>
-            <div className="media-card">
-              <span>Podcast</span><h3>Conversations that matter.</h3>
-            </div>
-            <div className="media-card">
-              <span>Documentary</span><h3>Beyond the spotlight.</h3>
-            </div>
-          </div>
-        </section>
+        <section id="media" className="section-pad"><div className="section-heading"><div><p className="eyebrow">Selected work</p><h2>Latest media</h2></div><a className="text-link" href="#contact">View all media <ArrowUpRight size={16} /></a></div><div className="media-grid"><div className="media-card large"><div className="media-icon"><Play size={18} /></div><span>Featured video</span><h3>The story behind the laughter.</h3></div><div className="media-card"><div className="media-icon"><Mic2 size={18} /></div><span>Podcast</span><h3>Conversations that matter.</h3></div><div className="media-card"><div className="media-icon"><BriefcaseBusiness size={18} /></div><span>Documentary</span><h3>Beyond the spotlight.</h3></div></div></section>
 
-        <section id="projects" className="section-pad projects-section">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Beyond the stage</p>
-              <h2>Featured projects</h2>
-            </div>
-          </div>
-          <div className="project-list">
-            {projects.map((project, index) => 
-            <article className="project-row" key={project.title}>
-              <span className="project-number">0{index + 1}</span>
-              <div>
-                <span className="eyebrow">{project.category}</span>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-              </div>
-              <ArrowUpRight />
-            </article>)}
-          </div>
-        </section>
+        <section id="projects" className="section-pad projects-section"><div className="section-heading"><div><p className="eyebrow">Beyond the stage</p><h2>Featured projects</h2></div></div><div className="project-list">{projects.map((project, index) => <article className="project-row" key={project.title}><span className="project-number">0{index + 1}</span><div><span className="eyebrow">{project.category}</span><h3>{project.title}</h3><p>{project.description}</p></div><ArrowUpRight /></article>)}</div></section>
 
-        <section id="contact" className="contact-section section-pad">
-          <p className="eyebrow">Let's work together</p>
-          <h2>Bring the next idea<br /><em>to life.</em></h2>
-          <p>For bookings, collaborations, appearances and business inquiries.</p>
-          <a className="button" href="mailto:hello@example.com">Start a conversation <ArrowUpRight size={16} /></a>
-        </section>
+        <section id="contact" className="contact-section section-pad"><p className="eyebrow">Let's work together</p><h2>Bring the next idea<br /><em>to life.</em></h2><p>For bookings, collaborations, appearances and business inquiries.</p><div className="contact-actions"><a className="button" href="mailto:hello@example.com">Start a conversation <ArrowUpRight size={16} /></a><a className="text-link" href="#shows"><CalendarDays size={16} /> View appearances</a></div></section>
       </main>
 
-      <footer className="footer section-pad">
-        <div className="brand">
-          <span className="brand-mark">D</span>
-          <span><strong>DARMIAN</strong><strong>KINGSTON</strong></span>
-        </div>
-        <div className="socials">
-          <a href="#" aria-label="Instagram">
-            <FaInstagram />
-          </a>
-
-          <a href="#" aria-label="YouTube">
-            <FaYoutube />
-          </a>
-
-          <a href="#" aria-label="Facebook">
-            <FaFacebookF />
-          </a>
-        </div>
-        <p>© {new Date().getFullYear()} Darmian Kingston. All rights reserved.</p>
-      </footer>
+      <footer className="footer section-pad"><div className="brand"><span className="brand-mark">D</span><span><strong>DARMIAN</strong><strong>KINGSTON</strong></span></div><div className="socials"><a href="#" aria-label="Instagram"><FaInstagram /></a><a href="#" aria-label="YouTube"><FaYoutube /></a><a href="#" aria-label="Facebook"><FaFacebookF /></a><a href="#" aria-label="TikTok"><FaTiktok /></a></div><p>© {new Date().getFullYear()} Darmian Kingston. All rights reserved.</p></footer>
     </div>
   );
 }
