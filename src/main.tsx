@@ -28,10 +28,19 @@ function App() {
           <span className="brand-mark">D</span>
           <span><strong>DARMIAN</strong><strong>KINGSTON</strong></span>
         </a>
-        <button className="menu-button" aria-label="Toggle navigation" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+        <button 
+          className="menu-button" 
+          aria-label="Toggle navigation" 
+          onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}
+        </button>
         <nav className={open ? 'nav open' : 'nav'}>
           {['About', 'Shows', 'Media', 'Projects', 'Contact'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={close}>{item}</a>)}
-          <a className="button button-small" href="#contact" onClick={close}>Book Darmian <ArrowUpRight size={15} /></a>
+          <a 
+            className="button button-small" 
+            href="#contact" onClick={close}>
+              Book Darmian 
+              <ArrowUpRight size={15} />
+            </a>
         </nav>
       </header>
 
@@ -191,7 +200,7 @@ function App() {
               <div className="show-card-number">01</div>
 
               <div className="show-card-content">
-                <span>Live entertainment</span>
+                <span>entertainment</span>
 
                 <h3>
                   Comedy, connection

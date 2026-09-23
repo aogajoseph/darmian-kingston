@@ -685,6 +685,11 @@ h1 em {
   gap: 14px;
 }
 
+.about-image {
+  position: relative;
+  overflow: hidden;
+}
+
 .about-image img {
   display: block;
   width: 100%;
@@ -780,6 +785,7 @@ h1 em {
   .about-visuals {
     grid-template-columns: 1fr 1fr;
   }
+  
   .about-image img {
     display: block;
     width: 100%;
