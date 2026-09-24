@@ -42,15 +42,34 @@ export const site = {
   brand: {
     firstName: "DARMIAN",
     lastName: "KINGSTON",
-    mark: "D",
+    mark: "DK",
     name: "Darmian Kingston",
     shortName: "DK",
+    favicon: "/favicon.svg",
   },
 
   seo: {
     title: "Darmian Kingston — Entertainer, Creator & Entrepreneur",
     description:
       "The official digital home of Darmian Kingston — entertainer, creator and entrepreneur.",
+    url: "https://darmiankingston.com",
+    siteName: "Darmian Kingston",
+    locale: "en_KE",
+    type: "website",
+    keywords: [
+      "Darmian Kingston",
+      "Kenyan entertainer",
+      "Kenyan creator",
+      "Kenyan entrepreneur",
+      "Kenyan comedian",
+      "event host",
+    ],
+    image: {
+      src: "/images/og-image.jpg",
+      alt: "Darmian Kingston",
+      width: 1200,
+      height: 630,
+    },
   },
 
   navigation: [
@@ -274,23 +293,23 @@ export const site = {
           placeholder: "Select an option",
           options: [
             {
-              value: "booking",
+              value: "Event Booking",
               label: "Event booking",
             },
             {
-              value: "brand",
+              value: "Brand Partnership",
               label: "Brand partnership",
             },
             {
-              value: "media",
+              value: "Media Appearance",
               label: "Media appearance",
             },
             {
-              value: "collaboration",
+              value: "Creative Collaboration",
               label: "Creative collaboration",
             },
             {
-              value: "other",
+              value: "Other",
               label: "Other",
             },
           ] satisfies EnquiryOption[],
