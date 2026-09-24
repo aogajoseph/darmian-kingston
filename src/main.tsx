@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import ReactDOM from 'react-dom/client';
 import { ArrowUpRight, Menu, X, Play } from 'lucide-react';
 import { FaInstagram, FaYoutube, FaFacebookF, FaTiktok } from 'react-icons/fa';
@@ -20,6 +20,44 @@ const stats = [
 function App() {
   const [open, setOpen] = React.useState(false);
   const close = () => setOpen(false);
+
+  const [formStatus, setFormStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+
+  const [enquiryType, setEnquiryType] = useState("");
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    setFormStatus("submitting");
+
+    try {
+      const response = await fetch(
+        "https://formspree.io/f/xoevwzra",
+        {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        form.reset();
+        setEnquiryType("");
+        setFormStatus("success");
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
+  };
 
   return (
     <div className="site-shell">
@@ -417,11 +455,20 @@ function App() {
               </div>
             </div>
 
-            <form className="booking-form">
+            <form
+              className="booking-form"
+              onSubmit={handleSubmit}
+            >
               <div className="form-heading">
                 <span>01 / Enquiry</span>
                 <h3>Start a conversation.</h3>
               </div>
+
+              <input
+                type="hidden"
+                name="_subject"
+                value="New enquiry from Darmian Kingston website"
+              />
 
               <label>
                 Your name
@@ -444,18 +491,57 @@ function App() {
               </label>
 
               <label>
+                Phone number
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+254 7XX XXX XXX"
+                />
+              </label>
+
+              <label>
                 Enquiry type
-                <select name="enquiryType" defaultValue="" required>
+                <select
+                  name="enquiryType"
+                  value={enquiryType}
+                  onChange={(event) => setEnquiryType(event.target.value)}
+                  required
+                >
                   <option value="" disabled>
                     Select an option
                   </option>
                   <option value="booking">Event booking</option>
                   <option value="brand">Brand partnership</option>
                   <option value="media">Media appearance</option>
-                  <option value="collaboration">Creative collaboration</option>
+                  <option value="collaboration">
+                    Creative collaboration
+                  </option>
                   <option value="other">Other</option>
                 </select>
               </label>
+
+              {enquiryType === "booking" && (
+                <>
+                  <label>
+                    Event date
+                    <input
+                      type="date"
+                      name="date"
+                      required
+                    />
+                  </label>
+
+                  <label>
+                    Location
+                    <input
+                      type="text"
+                      name="location"
+                      placeholder="Nairobi, Kenya"
+                      required
+                    />
+                  </label>
+                </>
+              )}
 
               <label>
                 Tell us more
@@ -467,9 +553,31 @@ function App() {
                 />
               </label>
 
-              <button type="submit" className="button">
-                Send enquiry <ArrowUpRight size={16} />
+              <button
+                type="submit"
+                className="button"
+                disabled={formStatus === "submitting"}
+              >
+                {formStatus === "submitting"
+                  ? "Sending..."
+                  : "Send enquiry"}
+
+                {formStatus !== "submitting" && (
+                  <ArrowUpRight size={16} />
+                )}
               </button>
+
+              {formStatus === "success" && (
+                <p className="form-message form-success">
+                  Enquiry sent successfully. We'll be in touch shortly.
+                </p>
+              )}
+
+              {formStatus === "error" && (
+                <p className="form-message form-error">
+                  Something went wrong. Please try again or email us directly.
+                </p>
+              )}
             </form>
           </div>
         </section>

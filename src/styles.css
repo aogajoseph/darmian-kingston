@@ -1577,6 +1577,29 @@ h1 em {
   }
 }
 
+/* ========================================
+   FORM STATUS
+======================================== */
+
+.form-message {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.form-success {
+  color: var(--gold-light);
+}
+
+.form-error {
+  color: #d88f7f;
+}
+
+.booking-form button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 
 /* ========================================
    14. FOOTER
