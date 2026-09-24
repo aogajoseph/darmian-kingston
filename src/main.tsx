@@ -1,31 +1,32 @@
 import React, { useState } from "react";
-import ReactDOM from 'react-dom/client';
-import { ArrowUpRight, Menu, X, Play } from 'lucide-react';
-import { FaInstagram, FaYoutube, FaFacebookF, FaTiktok } from 'react-icons/fa';
-import './styles.css';
+import ReactDOM from "react-dom/client";
 
-const projects = [
-  { category: 'Live Show', title: 'The Darmian Experience', description: 'A high-energy live entertainment experience built around comedy, conversation and culture.' },
-  { category: 'Podcast', title: 'The Kingston Sessions', description: 'Unfiltered conversations with creators, innovators and extraordinary personalities.' },
-  { category: 'Documentary', title: 'Behind the Laughs', description: 'A closer look at the stories, people and moments behind the public persona.' },
-];
+import {
+  ArrowUpRight,
+  Menu,
+  X,
+  Play,
+} from "lucide-react";
 
-const stats = [
-  ['10+', 'Years in entertainment'],
-  ['500+', 'Shows performed'],
-  ['1M+', 'Audience across platforms'],
-  ['Global', 'Audience and growing'],
-];
+import {
+  FaInstagram,
+  FaYoutube,
+  FaFacebookF,
+  FaTiktok,
+} from "react-icons/fa";
+
+import { site } from "./content/site";
+import "./styles.css";
 
 function App() {
-  const [open, setOpen] = React.useState(false);
-  const close = () => setOpen(false);
-
+  const [open, setOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
 
   const [enquiryType, setEnquiryType] = useState("");
+
+  const close = () => setOpen(false);
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
@@ -33,11 +34,12 @@ function App() {
     event.preventDefault();
 
     const form = event.currentTarget;
+
     setFormStatus("submitting");
 
     try {
       const response = await fetch(
-        "https://formspree.io/f/xoevwzra",
+        site.contact.form.formspreeEndpoint,
         {
           method: "POST",
           body: new FormData(form),
@@ -62,98 +64,140 @@ function App() {
   return (
     <div className="site-shell">
       <header className="nav-wrap">
-        <a className="brand" href="#home" onClick={close}>
-          <span className="brand-mark">D</span>
-          <span><strong>DARMIAN</strong><strong>KINGSTON</strong></span>
+        <a
+          className="brand"
+          href="#home"
+          onClick={close}
+        >
+          <span className="brand-mark">
+            {site.brand.mark}
+          </span>
+
+          <span>
+            <strong>{site.brand.firstName}</strong>
+            <strong>{site.brand.lastName}</strong>
+          </span>
         </a>
 
-        <button 
-          className="menu-button" 
-          aria-label="Toggle navigation" 
-          onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}
+        <button
+          className="menu-button"
+          aria-label="Toggle navigation"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X /> : <Menu />}
         </button>
 
-        <nav className={open ? 'nav open' : 'nav'}>
-          {['About', 'Shows', 'Media', 'Projects', 'Contact'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={close}>{item}</a>)}
-          
-          <a 
-            className="button button-small" 
-            href="#contact" onClick={close}>
-            Book Darmian 
+        <nav className={open ? "nav open" : "nav"}>
+          {site.navigation.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={close}
+            >
+              {item.label}
+            </a>
+          ))}
+
+          <a
+            className="button button-small"
+            href="#contact"
+            onClick={close}
+          >
+            Book {site.brand.firstName}
             <ArrowUpRight size={15} />
           </a>
         </nav>
       </header>
 
       <main>
-        <section id="home" className="hero section-pad">
-          <div className="hero-background-text" aria-hidden="true">
-            DK
+        {/* HERO */}
+        <section
+          id="home"
+          className="hero section-pad"
+        >
+          <div
+            className="hero-background-text"
+            aria-hidden="true"
+          >
+            {site.brand.shortName}
           </div>
 
           <div className="hero-copy">
             <div className="hero-intro">
               <span className="hero-line" />
+
               <p className="eyebrow">
-                Entertainer · Creator · Entrepreneur
+                {site.hero.eyebrow}
               </p>
             </div>
 
             <h1>
-              More than
+              {site.hero.title.before}
               <br />
-              entertainment.
+              {site.hero.title.middle}
               <br />
-              <em>It's a movement.</em>
+              <em>{site.hero.title.emphasis}</em>
             </h1>
 
             <p className="hero-text">
-              The official digital home of Darmian Kingston.
-              A storyteller, entertainer and creative force
-              building experiences that connect, inspire and
-              leave a lasting impression.
+              {site.hero.description}
             </p>
 
             <div className="hero-actions">
-              <a className="button" href="#contact">
-                Book Darmian
+              <a
+                className="button"
+                href={site.hero.primaryAction.href}
+              >
+                {site.hero.primaryAction.label}
                 <ArrowUpRight size={16} />
               </a>
 
-              <a className="text-link" href="#projects">
-                Explore projects
+              <a
+                className="text-link"
+                href={site.hero.secondaryAction.href}
+              >
+                {site.hero.secondaryAction.label}
                 <ArrowUpRight size={16} />
               </a>
             </div>
 
             <div className="hero-signature">
-              <span>DK</span>
-              <p>Creating impact<br />beyond the spotlight.</p>
+              <span>{site.hero.signature.mark}</span>
+
+              <p>
+                {site.hero.signature.text
+                  .split("\n")
+                  .map((line, index) => (
+                    <React.Fragment key={line}>
+                      {index > 0 && <br />}
+                      {line}
+                    </React.Fragment>
+                  ))}
+              </p>
             </div>
           </div>
 
           <div
             className="hero-portrait"
-            aria-label="Portrait of Darmian Kingston"
+            aria-label={site.hero.portrait.alt}
           >
             <div className="portrait-grid" />
-
             <div className="portrait-glow" />
 
             <div className="portrait-card">
               <img
-                src="/images/dk.png"
-                alt="Darmian Kingston portrait"
+                src={site.hero.portrait.src}
+                alt={site.hero.portrait.alt}
               />
             </div>
 
             <div className="portrait-label">
-              <span>01</span>
-              <span>Personal brand</span>
+              <span>{site.hero.portrait.number}</span>
+              <span>{site.hero.portrait.label}</span>
             </div>
 
             <div className="portrait-side-text">
-              EST. 2026
+              {site.hero.portrait.sideText}
             </div>
           </div>
 
@@ -163,18 +207,41 @@ function App() {
           </div>
         </section>
 
-        <section className="stats section-pad">{stats.map(([number, label]) => <div className="stat" key={label}><strong>{number}</strong><span>{label}</span></div>)}</section>
+        {/* STATS */}
+        <section className="stats section-pad">
+          {site.stats.map((stat) => (
+            <div
+              className="stat"
+              key={stat.label}
+            >
+              <strong>{stat.number}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </section>
 
-        <section id="about" className="split-section section-pad about-section">
+        {/* ABOUT */}
+        <section
+          id="about"
+          className="split-section section-pad about-section"
+        >
           <div className="about-heading">
-            <p className="eyebrow">01 / About</p>
+            <p className="eyebrow">
+              {site.about.eyebrow}
+            </p>
 
             <h2>
-              A personal brand
-              <br />
-              with something
-              <br />
-              to say.
+              {site.about.title.lines.map(
+                (line, index) => (
+                  <React.Fragment key={line}>
+                    {line}
+                    {index <
+                      site.about.title.lines.length - 1 && (
+                      <br />
+                    )}
+                  </React.Fragment>
+                )
+              )}
             </h2>
 
             <span className="about-accent-line" />
@@ -182,275 +249,325 @@ function App() {
 
           <div className="about-content">
             <div className="about-copy">
-              <p className="body-copy">
-                Darmian Kingston is an entertainer, creator and entrepreneur
-                building experiences that connect people, challenge perspectives
-                and leave a lasting impression.
-              </p>
+              {site.about.paragraphs.map((paragraph) => (
+                <p
+                  className="body-copy"
+                  key={paragraph}
+                >
+                  {paragraph}
+                </p>
+              ))}
 
-              <p className="body-copy">
-                From the stage to the screen, every project is an opportunity
-                to turn attention into meaningful impact.
-              </p>
-
-              <a className="text-link" href="#contact">
-                Discover the story <ArrowUpRight size={16} />
+              <a
+                className="text-link"
+                href={site.about.link.href}
+              >
+                {site.about.link.label}
+                <ArrowUpRight size={16} />
               </a>
             </div>
 
             <div className="about-visuals">
-              <div className="about-image about-image-main">
-                <img
-                  src="/images/about.png"
-                  alt="Darmian Kingston performing on stage"
-                />
-                <span className="about-image-label">Live performance</span>
-                <span className="about-image-number">01</span>
-              </div>
+              {site.about.images.map((image, index) => (
+                <div
+                  className={`about-image ${
+                    index === 0
+                      ? "about-image-main"
+                      : "about-image-secondary"
+                  }`}
+                  key={image.src}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                  />
 
-              <div className="about-image about-image-secondary">
-                <img
-                  src="/images/about2.png"
-                  alt="Darmian Kingston during a podcast conversation"
-                />
-                <span className="about-image-label">The conversation</span>
-                <span className="about-image-number">02</span>
-              </div>
+                  <span className="about-image-label">
+                    {image.label}
+                  </span>
+
+                  <span className="about-image-number">
+                    {image.number}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section id="shows" className="dark-section section-pad">
+        {/* SHOWS */}
+        <section
+          id="shows"
+          className="dark-section section-pad"
+        >
           <div className="section-heading">
             <div>
-              <p className="eyebrow">On stage</p>
-              <h2>Shows & appearances</h2>
+              <p className="eyebrow">
+                {site.shows.eyebrow}
+              </p>
+
+              <h2>{site.shows.title}</h2>
             </div>
 
-            <a className="text-link" href="#contact">
-              Request booking <ArrowUpRight size={16} />
+            <a
+              className="text-link"
+              href={site.shows.action.href}
+            >
+              {site.shows.action.label}
+              <ArrowUpRight size={16} />
             </a>
           </div>
 
           <div className="feature-grid">
-            <article className="show-card show-card-main">
-              <div className="show-card-background" />
-
-              <div className="show-card-overlay" />
-
-              <div className="show-card-number">01</div>
-
-              <div className="show-card-content">
-                <span>entertainment</span>
-
-                <h3>
-                  Comedy, connection
-                  <br />
-                  and unforgettable nights.
-                </h3>
-
-                <p>
-                  Built for audiences, brands, festivals and private experiences.
-                </p>
-
-                <a className="text-link" href="#contact">
-                  Explore live entertainment <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </article>
-
-            <article className="show-card show-card-secondary">
-              <div className="show-card-background" />
-
-              <div className="show-card-overlay" />
-
-              <div className="show-card-number">02</div>
-
-              <div className="show-card-content">
-                <span>Hosting</span>
-
-                <h3>
-                  Confident energy.
-                  <br />
-                  Sharp delivery.
-                </h3>
-
-                <p>
-                  Professional hosting for launches, events and conversations.
-                </p>
-
-                <a className="text-link" href="#contact">
-                  Explore hosting <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section id="media" className="section-pad media-section">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">From the archive</p>
-              <h2>Moments that<br /><em>move people.</em></h2>
-            </div>
-
-            <p>
-              Explore selected moments, conversations and creative projects from Darmian Kingston's journey.
-            </p>
-          </div>
-
-          <div className="media-showcase">
-            <article className="media-feature">
-              <div className="media-image media-image-main"
-                style={{
-                  backgroundImage: 'url("/images/media-feature.png")',
-                }}
-              >
-                <div className="media-image-overlay" />
-
-                <span className="media-number">01</span>
-
-                <button
-                  className="media-play"
-                  aria-label="Play featured video"
-                >
-                  <Play size={22} fill="currentColor" />
-                </button>
-
-                <div className="media-caption">
-                  <span>Featured film</span>
-                  <h3>The Kingston Sessions</h3>
-                </div>
-              </div>
-            </article>
-
-            <div className="media-list">
-              <article className="media-item">
-                <div
-                  className="media-image media-image-small"
-                  style={{
-                    backgroundImage: 'url("/images/media-behind.png")',
-                  }}
-                >
-                  <span className="media-number">02</span>
-
-                  <button
-                    className="media-play"
-                    aria-label="Play behind the scenes video"
-                  >
-                    <Play size={16} fill="currentColor" />
-                  </button>
-                </div>
-
-                <div className="media-item-copy">
-                  <span>Behind the scenes</span>
-                  <h3>Behind the Laughs</h3>
-                  <a href="#contact" className="text-link">
-                    Explore story <ArrowUpRight size={15} />
-                  </a>
-                </div>
-              </article>
-
-              <article className="media-item">
-                <div
-                  className="media-image media-image-small"
-                  style={{
-                    backgroundImage: 'url("/images/media-live.png")',
-                  }}
-                >
-                  <span className="media-number">03</span>
-
-                  <button
-                    className="media-play"
-                    aria-label="Play live performance video"
-                  >
-                    <Play size={16} fill="currentColor" />
-                  </button>
-                </div>
-
-                <div className="media-item-copy">
-                  <span>Live performance</span>
-                  <h3>The Darmian Experience</h3>
-                  <a href="#contact" className="text-link">
-                    View performance <ArrowUpRight size={15} />
-                  </a>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="projects" className="section-pad projects-section">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Beyond the stage</p>
-              <h2>Featured projects</h2>
-            </div>
-
-            <p>
-              Creative work, original formats and experiences built to connect
-              with audiences beyond the spotlight.
-            </p>
-          </div>
-
-          <div className="project-list">
-            {projects.map((project, index) => (
+            {site.shows.cards.map((show, index) => (
               <article
-                className="project-row"
-                key={project.title}
+                className={`show-card ${
+                  index === 0
+                    ? "show-card-main"
+                    : "show-card-secondary"
+                }`}
+                key={show.number}
               >
-                <span className="project-number">
-                  0{index + 1}
-                </span>
+                <div
+                  className="show-card-background"
+                  style={{
+                    backgroundImage: `url("${show.backgroundImage}")`,
+                  }}
+                />
 
-                <div className="project-content">
-                  <span className="eyebrow">
-                    {project.category}
-                  </span>
+                <div className="show-card-overlay" />
 
-                  <h3>{project.title}</h3>
-
-                  <p>{project.description}</p>
+                <div className="show-card-number">
+                  {show.number}
                 </div>
 
-                <a
-                  href="#contact"
-                  className="project-link"
-                  aria-label={`Explore ${project.title}`}
-                >
-                  <ArrowUpRight size={22} />
-                </a>
+                <div className="show-card-content">
+                  <span>{show.category}</span>
+
+                  <h3>
+                    {show.title
+                      .split("\n")
+                      .map((line, lineIndex) => (
+                        <React.Fragment key={line}>
+                          {line}
+                          {lineIndex <
+                            show.title.split("\n").length -
+                              1 && <br />}
+                        </React.Fragment>
+                      ))}
+                  </h3>
+
+                  <p>{show.description}</p>
+
+                  <a
+                    className="text-link"
+                    href="#contact"
+                  >
+                    {show.linkLabel}
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="contact" className="section-pad contact-section">
-          <div className="contact-layout">
-            <div className="contact-intro">
-              <p className="eyebrow">Let's work together</p>
+        {/* MEDIA */}
+        <section
+          id="media"
+          className="section-pad media-section"
+        >
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">
+                {site.media.eyebrow}
+              </p>
 
               <h2>
-                Bring the<br />
-                <em>vision to life.</em>
+                {site.media.title.first}
+                <br />
+                <em>{site.media.title.emphasis}</em>
+              </h2>
+            </div>
+
+            <p>{site.media.description}</p>
+          </div>
+
+          <div className="media-showcase">
+            <article className="media-feature">
+              <div
+                className="media-image media-image-main"
+                style={{
+                  backgroundImage: `url("${site.media.featured.image}")`,
+                }}
+              >
+                <div className="media-image-overlay" />
+
+                <span className="media-number">
+                  {site.media.featured.number}
+                </span>
+
+                <button
+                  className="media-play"
+                  aria-label={
+                    site.media.featured.playLabel
+                  }
+                >
+                  <Play
+                    size={22}
+                    fill="currentColor"
+                  />
+                </button>
+
+                <div className="media-caption">
+                  <span>
+                    {site.media.featured.category}
+                  </span>
+
+                  <h3>
+                    {site.media.featured.title}
+                  </h3>
+                </div>
+              </div>
+            </article>
+
+            <div className="media-list">
+              {site.media.items.map((item) => (
+                <article
+                  className="media-item"
+                  key={item.number}
+                >
+                  <div
+                    className="media-image media-image-small"
+                    style={{
+                      backgroundImage: `url("${item.image}")`,
+                    }}
+                  >
+                    <span className="media-number">
+                      {item.number}
+                    </span>
+
+                    <button
+                      className="media-play"
+                      aria-label={item.ariaLabel}
+                    >
+                      <Play
+                        size={16}
+                        fill="currentColor"
+                      />
+                    </button>
+                  </div>
+
+                  <div className="media-item-copy">
+                    <span>{item.category}</span>
+
+                    <h3>{item.title}</h3>
+
+                    <a
+                      href="#contact"
+                      className="text-link"
+                    >
+                      {item.linkLabel}
+                      <ArrowUpRight size={15} />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECTS */}
+        <section
+          id="projects"
+          className="section-pad projects-section"
+        >
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">
+                {site.projects.eyebrow}
+              </p>
+
+              <h2>{site.projects.title}</h2>
+            </div>
+
+            <p>{site.projects.description}</p>
+          </div>
+
+          <div className="project-list">
+            {site.projects.items.map(
+              (project, index) => (
+                <article
+                  className="project-row"
+                  key={project.title}
+                >
+                  <span className="project-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <div className="project-content">
+                    <span className="eyebrow">
+                      {project.category}
+                    </span>
+
+                    <h3>{project.title}</h3>
+
+                    <p>{project.description}</p>
+                  </div>
+
+                  <a
+                    href="#contact"
+                    className="project-link"
+                    aria-label={`Explore ${project.title}`}
+                  >
+                    <ArrowUpRight size={22} />
+                  </a>
+                </article>
+              )
+            )}
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="section-pad contact-section"
+        >
+          <div className="contact-layout">
+            <div className="contact-intro">
+              <p className="eyebrow">
+                {site.contact.eyebrow}
+              </p>
+
+              <h2>
+                {site.contact.title.first}
+                <br />
+                <em>{site.contact.title.emphasis}</em>
               </h2>
 
               <p className="contact-description">
-                From live performances and brand partnerships to media
-                collaborations, let's create something meaningful.
+                {site.contact.description}
               </p>
 
               <div className="contact-details">
                 <div>
                   <span>Email</span>
-                  <a href="mailto:hello@darmiankingston.com">
-                    hello@darmiankingston.com
+
+                  <a
+                    href={`mailto:${site.contact.email}`}
+                  >
+                    {site.contact.email}
                   </a>
                 </div>
 
                 <div>
-                  <span>Availability</span>
-                  <p>Bookings · Partnerships · Collaborations</p>
+                  <span>
+                    {site.contact.availabilityLabel}
+                  </span>
+
+                  <p>
+                    {site.contact.availability}
+                  </p>
                 </div>
               </div>
             </div>
@@ -460,70 +577,105 @@ function App() {
               onSubmit={handleSubmit}
             >
               <div className="form-heading">
-                <span>01 / Enquiry</span>
-                <h3>Start a conversation.</h3>
+                <span>
+                  {site.contact.form.headingNumber}
+                </span>
+
+                <h3>{site.contact.form.heading}</h3>
               </div>
 
               <input
                 type="hidden"
                 name="_subject"
-                value="New enquiry from Darmian Kingston website"
+                value={site.contact.form.subject}
               />
 
               <label>
-                Your name
+                {site.contact.form.fields.name.label}
+
                 <input
                   type="text"
                   name="name"
-                  placeholder="Full name"
+                  placeholder={
+                    site.contact.form.fields.name
+                      .placeholder
+                  }
                   required
                 />
               </label>
 
               <label>
-                Email address
+                {site.contact.form.fields.email.label}
+
                 <input
                   type="email"
                   name="email"
-                  placeholder="you@example.com"
+                  placeholder={
+                    site.contact.form.fields.email
+                      .placeholder
+                  }
                   required
                 />
               </label>
 
               <label>
-                Phone number
+                {site.contact.form.fields.phone.label}
+
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="+254 7XX XXX XXX"
+                  placeholder={
+                    site.contact.form.fields.phone
+                      .placeholder
+                  }
                 />
               </label>
 
               <label>
-                Enquiry type
+                {
+                  site.contact.form.fields.enquiryType
+                    .label
+                }
+
                 <select
                   name="enquiryType"
                   value={enquiryType}
-                  onChange={(event) => setEnquiryType(event.target.value)}
+                  onChange={(event) =>
+                    setEnquiryType(event.target.value)
+                  }
                   required
                 >
-                  <option value="" disabled>
-                    Select an option
+                  <option
+                    value=""
+                    disabled
+                  >
+                    {
+                      site.contact.form.fields
+                        .enquiryType.placeholder
+                    }
                   </option>
-                  <option value="booking">Event booking</option>
-                  <option value="brand">Brand partnership</option>
-                  <option value="media">Media appearance</option>
-                  <option value="collaboration">
-                    Creative collaboration
-                  </option>
-                  <option value="other">Other</option>
+
+                  {site.contact.form.fields.enquiryType.options.map(
+                    (option) => (
+                      <option
+                        value={option.value}
+                        key={option.value}
+                      >
+                        {option.label}
+                      </option>
+                    )
+                  )}
                 </select>
               </label>
 
               {enquiryType === "booking" && (
                 <>
                   <label>
-                    Event date
+                    {
+                      site.contact.form.fields
+                        .bookingDate.label
+                    }
+
                     <input
                       type="date"
                       name="date"
@@ -532,11 +684,18 @@ function App() {
                   </label>
 
                   <label>
-                    Location
+                    {
+                      site.contact.form.fields.location
+                        .label
+                    }
+
                     <input
                       type="text"
                       name="location"
-                      placeholder="Nairobi, Kenya"
+                      placeholder={
+                        site.contact.form.fields
+                          .location.placeholder
+                      }
                       required
                     />
                   </label>
@@ -544,10 +703,16 @@ function App() {
               )}
 
               <label>
-                Tell us more
+                {
+                  site.contact.form.fields.message.label
+                }
+
                 <textarea
                   name="message"
-                  placeholder="Share the details of your enquiry..."
+                  placeholder={
+                    site.contact.form.fields.message
+                      .placeholder
+                  }
                   rows={5}
                   required
                 />
@@ -559,8 +724,8 @@ function App() {
                 disabled={formStatus === "submitting"}
               >
                 {formStatus === "submitting"
-                  ? "Sending..."
-                  : "Send enquiry"}
+                  ? site.contact.form.submittingLabel
+                  : site.contact.form.submitLabel}
 
                 {formStatus !== "submitting" && (
                   <ArrowUpRight size={16} />
@@ -569,13 +734,13 @@ function App() {
 
               {formStatus === "success" && (
                 <p className="form-message form-success">
-                  Enquiry sent successfully. We'll be in touch shortly.
+                  {site.contact.form.successMessage}
                 </p>
               )}
 
               {formStatus === "error" && (
                 <p className="form-message form-error">
-                  Something went wrong. Please try again or email us directly.
+                  {site.contact.form.errorMessage}
                 </p>
               )}
             </form>
@@ -583,9 +748,55 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer section-pad"><div className="brand"><span className="brand-mark">D</span><span><strong>DARMIAN</strong><strong>KINGSTON</strong></span></div><div className="socials"><a href="#" aria-label="Instagram"><FaInstagram /></a><a href="#" aria-label="YouTube"><FaYoutube /></a><a href="#" aria-label="Facebook"><FaFacebookF /></a><a href="#" aria-label="TikTok"><FaTiktok /></a></div><p>© {new Date().getFullYear()} Darmian Kingston. All rights reserved.</p></footer>
+      {/* FOOTER */}
+      <footer className="footer section-pad">
+        <div className="brand">
+          <span className="brand-mark">
+            {site.brand.mark}
+          </span>
+
+          <span>
+            <strong>{site.brand.firstName}</strong>
+            <strong>{site.brand.lastName}</strong>
+          </span>
+        </div>
+
+        <div className="socials">
+          {site.socialLinks.map((social) => {
+            const iconMap = {
+              Instagram: <FaInstagram />,
+              YouTube: <FaYoutube />,
+              Facebook: <FaFacebookF />,
+              TikTok: <FaTiktok />,
+            };
+
+            return (
+              <a
+                href={social.href}
+                aria-label={social.label}
+                key={social.label}
+              >
+                {iconMap[
+                  social.label as keyof typeof iconMap
+                ] ?? social.label}
+              </a>
+            );
+          })}
+        </div>
+
+        <p>
+          © {new Date().getFullYear()}{" "}
+          {site.footer.copyrightName}. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
+ReactDOM.createRoot(
+  document.getElementById("root")!
+).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
